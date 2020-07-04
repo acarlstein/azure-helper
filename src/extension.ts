@@ -7,7 +7,7 @@ import * as providers from './providersExamples';
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 	const multiCompletionTypes = providers.getMultiCompletionTypes();
-	const provider2 = providers.getCompletionWithOptionsProvider()
+	const provider2 = providers.getCompletionWithOptionsProvider();
 	context.subscriptions.push(multiCompletionTypes, provider2);
 }
 
