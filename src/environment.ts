@@ -1,12 +1,14 @@
 export function resolveEnvironmentVariables(text: string, isWindows: boolean): string {
   if (isWindows) {
-      return text.replace(/%([^%]+)%/g, (unused, name) => {
-          const resolved = process.env[name];
-          return resolved ?? name;
+      // Staring with the charater %, matches one or more characters, 
+      // until ending with the character %. i.e.: %VARIABLE_NAME%
+      const regex = /%([^%]+)%/g;
+      return text.replace(regex, (_, name) => {
+          return process.env[name] ?? name;
       });
   }
-  return text.replace(/(\$[a-zA-Z_]+[a-zA-Z0-9_]*)/g, (unused, name) => {
-      const resolved = process.env[name.substr(1)];
-      return resolved ?? name;
+  const regexAlphaNumericStartingWithLetter = /(\$[a-zA-Z_]+[a-zA-Z0-9_]*)/g;
+  return text.replace(regexAlphaNumericStartingWithLetter, (_, name) => {
+      return process.env[name.substr(1)] ?? name;
   });
 }
