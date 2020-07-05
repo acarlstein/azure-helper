@@ -10,7 +10,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"*"
+		"*",
+		"onCommand:shellLauncher.launch"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -18,8 +19,119 @@
 			{
 				"command": "azure-helper.helloWorld",
 				"title": "Hello World"
+			},
+			{
+				"command": "shellLauncher.launch",
+				"title": "Shell Launcher: Launch"
 			}
-		]
+		],
+		"configuration": {
+			"title": "Shell Launcher configuration",
+			"properties": {
+				"shellLauncher.shells.osx": {
+					"type": "array",
+					"description": "A list of shell configurations for macOS",
+					"default": [
+						{
+							"shell": "/bin/bash",
+							"label": "bash"
+						},
+						{
+							"shell": "/bin/zsh",
+							"label": "zsh"
+						},
+						{
+							"shell": "zsh",
+							"args": [
+								"-l"
+							],
+							"label": "zsh login shell"
+						},
+						{
+							"shell": "bash",
+							"args": [
+								"-l"
+							],
+							"label": "bash login shell"
+						}
+					],
+					"items": {
+						"shell": "string",
+						"args": "string[]",
+						"label": "string",
+						"launchName": "string",
+						"cwd": "string",
+						"env": "string[]"
+					}
+				},
+				"shellLauncher.shells.linux": {
+					"type": "array",
+					"description": "A list of shell configurations for Linux",
+					"default": [
+						{
+							"shell": "/bin/bash",
+							"label": "bash"
+						},
+						{
+							"shell": "/bin/zsh",
+							"label": "zsh"
+						},
+						{
+							"shell": "zsh",
+							"args": [
+								"-l"
+							],
+							"label": "zsh login shell"
+						},
+						{
+							"shell": "bash",
+							"args": [
+								"-l"
+							],
+							"label": "bash login shell"
+						}
+					],
+					"items": {
+						"shell": "string",
+						"args": "string[]",
+						"label": "string",
+						"launchName": "string",
+						"cwd": "string",
+						"env": "string[]"
+					}
+				},
+				"shellLauncher.shells.windows": {
+					"type": "array",
+					"description": "A list of shell configurations for Windows",
+					"default": [
+						{
+							"shell": "C:\\Windows\\System32\\cmd.exe",
+							"label": "cmd"
+						},
+						{
+							"shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+							"label": "PowerShell"
+						},
+						{
+							"shell": "C:\\Program Files\\Git\\bin\\bash.exe",
+							"label": "Git bash"
+						},
+						{
+							"shell": "C:\\Windows\\System32\\bash.exe",
+							"label": "WSL Bash"
+						}
+					],
+					"items": {
+						"shell": "string",
+						"args": "string[]",
+						"label": "string",
+						"launchName": "string",
+						"cwd": "string",
+						"env": "string[]"
+					}
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
