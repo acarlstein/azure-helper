@@ -44,7 +44,7 @@ These are sources used as reference to create this project.
   * License: MIT License
 * [VSCode Terminal API Example by Microsoft](https://github.com/Microsoft/vscode-extension-samples/tree/master/terminal-sample)
   * License: MIT License
-
+* [VSCode - Terminal Capture](https://github.com/mikekwright/vscode-terminal-capture)
 -----------------------------------------------------------------------------------------------------------
 
 ## Working with Markdown
